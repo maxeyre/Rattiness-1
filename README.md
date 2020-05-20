@@ -1,4 +1,4 @@
-# A multivariate geostatistical framework for combining multiple indices of abundance for disease vectors and reservoirs: A case study of *rattiness* in urban Brazil
+# A multivariate geostatistical framework for combining multiple indices of abundance for disease vectors and reservoirs: A case study of *rattiness* in a low-income urban Brazilian community
 
 ## Article
 The manuscript has been submitted for publication. A link to a pre-print will be made available here soon.

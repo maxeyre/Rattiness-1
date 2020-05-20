@@ -6,6 +6,8 @@ The manuscript has been submitted for publication. A link to a pre-print will be
 ## Data
 A single .csv file can be found [here](). This contains the cleaned dataset for the cross-sectional survey for rat signs, traps and track plates in Pau da Lima community, Salvador, Brazil, which was collected between October and December 2014. It is georeferenced and includes all relevant covariate values used in the model described in the article. A codebook for variables can be found [here]().
 
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+
 ## Software
 The statistical software developed for this project and used for the *rattiness* analysis is divided into four separate scripts: 
 
@@ -13,6 +15,8 @@ The statistical software developed for this project and used for the *rattiness*
 - Exploratory analysis - exploring covariate relationships and testing for residual spatial correlation
 - Exploratory analysis - LRT tests
 - 2 indices models
+
+[License](https://github.com/maxeyre/Rattiness-1/blob/master/LICENSE)
 
 ## Contact
 If you have any questions about the project, data or software please contact max.eyre@lstmed.ac.uk.

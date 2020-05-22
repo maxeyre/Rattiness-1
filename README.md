@@ -6,7 +6,6 @@ The manuscript has been submitted for publication. A link to a pre-print will be
 ## Data
 1. Rat index data
 File: [1-PdLRattinessData.csv](https://github.com/maxeyre/Rattiness-1/blob/master/Data/1-PdLRattinessData.csv) 
-
 The cleaned dataset for the cross-sectional survey for rat signs, traps and track plates in Pau da Lima community, Salvador, Brazil, which was collected between October and December 2014. It is georeferenced and includes all relevant covariate values used in the model described in the article. A codebook for variables can be found [here]().
 
 This dataset was collected by and belongs to the [Instituto de Saúde Coletiva, Universidade Federal da Bahia (ISC-UFBA)](http://www.isc.ufba.br/). If you use this dataset please could you cite ISC-UFBA and this published article.

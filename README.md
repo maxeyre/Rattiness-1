@@ -17,7 +17,7 @@ A 5m by 5m prediction grid with covariate values within the Pau da Lima study ar
 ## Software
 The statistical software developed for this project and used for the *rattiness* analysis is divided into four main scripts and six additional scripts for fitting two-indices models and making predictions. Each script includes a description of its function within the R script. All scripts are contained [here](https://github.com/maxeyre/Rattiness-1/tree/master/Scripts) and are as follows:
 
-#### 1. Exploratory analysis - exploring covariate relationships
+#### 1. Exploratory analysis - Explore covariate relationships
 File: [1-ExploreCovariates.R](https://github.com/maxeyre/Rattiness-1/blob/master/Scripts/1-ExploreCovariates.R)
 
 #### 2. Exploratory analysis - Fit non-spatial models with covariates, LRT tests for each index, test for residual spatial correlation

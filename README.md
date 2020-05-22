@@ -7,7 +7,7 @@ The manuscript has been submitted for publication. A link to a pre-print will be
 #### 1. Rat index data
 File: [1-PdLRattinessData.csv](https://github.com/maxeyre/Rattiness-1/blob/master/Data/1-PdLRattinessData.csv) 
 
-The cleaned dataset for the cross-sectional survey for rat signs, traps and track plates in Pau da Lima community, Salvador, Brazil, which was collected between October and December 2014. It is georeferenced and includes all relevant covariate values used in the model described in the article. A codebook for variables can be found [here](https://github.com/maxeyre/Rattiness-1/blob/master/codebook.md). This dataset was collected by and belongs to the [Instituto de Saúde Coletiva, Universidade Federal da Bahia (ISC-UFBA)](http://www.isc.ufba.br/). If you use this dataset please could you cite ISC-UFBA and this published article. <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+The cleaned dataset for the cross-sectional survey for rat signs, traps and track plates in Pau da Lima community, Salvador, Brazil, which was collected between October and December 2014. It is georeferenced and includes all relevant covariate values used in the model described in the article. A codebook for variables can be found [here](https://github.com/maxeyre/Rattiness-1/blob/master/codebook.md). This dataset was collected by and belongs to the [Instituto de Saúde Coletiva, Universidade Federal da Bahia (ISC-UFBA)](http://www.isc.ufba.br/). If you use this dataset please could you cite ISC-UFBA and this published article (see license at bottom of page).
 
 #### 2. Prediction grid
 File: [2-PdLPredictionGrid.csv](https://github.com/maxeyre/Rattiness-1/blob/master/Data/2-PdLPredictionGrid.csv)
@@ -32,7 +32,12 @@ File: [4-Prediction.R](https://github.com/maxeyre/Rattiness-1/blob/master/Script
 #### 5. Two-indices models - Fitting and prediction
 Folder: [Two-indices-models](https://github.com/maxeyre/Rattiness-1/tree/master/Scripts/Two-indices-models)
 
-[License](https://github.com/maxeyre/Rattiness-1/blob/master/LICENSE)
-
 ## Contact
 If you have any questions about the project, data or software please contact max.eyre@lstmed.ac.uk.
+
+## Licenses
+#### Data:
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+
+#### Software: 
+[License](https://github.com/maxeyre/Rattiness-1/blob/master/LICENSE)

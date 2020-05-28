@@ -177,26 +177,9 @@ U.data <- data.frame(X=unique(rat[,c("X","Y")])[,1],
                      U=U.pred.mean)
 
 ratUj <- left_join(rat,U.data, by=c("X","Y"))
-ratUj <- ratUj[,c("valley","X","Y","elevation","U","dist_sewer","dist_trash",
-                  "lc10_prop_soil","lc10_prop_veg","lc10_prop_pave","lc_perv_10m",
-                  "lc30_prop_soil","lc30_prop_veg","lc30_prop_pave","lc_perv_30m","rel_elev","dist_pri_sewer")]
 ratUj <- unique(ratUj)
 
 #### Exploratory analysis
 
-# Histogram of Uj
-hist(ratUj$U)
-
 # You can now plot Uj against covariates of interest (using ratUj) to explore relationships and decide how they 
-# should be included in the model. For example:
-
-# elevation
-x.elevation <- cut(ratUj$elevation,quantile(ratUj$elevation,seq(0,1,0.12)),
-                   include.lowest=TRUE)
-elevation.bin <- x.elevation
-x.elevation.mean <- tapply(ratUj$elevation,elevation.bin,mean)
-prop.elevation <- tapply(ratUj$U,elevation.bin,
-                         function(x) mean(x,na.rm=TRUE))
-n.obs.elevation <- tapply(elevation.bin,elevation.bin,length)
-plot(x.elevation.mean,prop.elevation,cex=n.obs.elevation*0.06, main="",xlab="Mean elevation (m)",
-     ylab="Estimated Rj", xlim=c(25,50)) 
+# should be included in the model.

@@ -43,7 +43,7 @@ ind2 <- which(rat$data_type=="traps")
 
 # load parameter estimates (from 2-LRTTestSpatialCorr.R)
 estim.par <- readRDS("estim.no.rat.for.signs.RDS")
-par0 <- c(estim.par$par[2:length(estim.par$par)], 3, 0.5)
+par0 <- c(estim.par$par[2:length(estim.par$par)], 3)
 
 
 k <- 0
@@ -57,9 +57,9 @@ beta0 <- par0[5:(p+4)]
 sigma2.0 <- exp(par0[3])
 sigma3.0 <- exp(par0[4])
 phi0 <- exp(par0[p+5])
-psi0 <- exp(par0[p+6])/(1+exp(par0[p+6]))
+# psi0 removed for this fit
 
-Sigma0 <- as.matrix(psi0*exp(-U/phi0))
+Sigma0 <- as.matrix(exp(-U/phi0)) 
 Sigma0 <- as.matrix(Sigma0)
 diag(Sigma0) <- 1 
 Sigma0.inv <- solve(Sigma0) 
@@ -273,7 +273,7 @@ compute.log.f <- function(par,ldetR=NA,R.inv=NA) {
 }
 
 par0 <- c(alpha2.0,alpha3.0,log(sigma2.0),log(sigma3.0),
-          beta0,log(phi0),log(psi0/(1-psi0)))
+          beta0,log(phi0))
 log.f.tilde <- compute.log.f(par0)
 
 MC.log.lik <- function(par) {
@@ -291,6 +291,12 @@ par0 <- estim.par$par
 }
 
 # your parameter estimates are now in estim.par
+
+# We recommend repeated re-fitting model with new parameter estimate plug-in until 
+# euclid norm of relative difference between two consecutive parameter estimates falls below 
+# a chosen value. Parameter estimates reported in the published article were estimated 
+# following this method.
+
 saveRDS(estim.par, "par_exc_signs.RDS")
 
 

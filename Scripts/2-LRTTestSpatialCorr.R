@@ -21,6 +21,7 @@ library(randtoolbox)
 library(numDeriv)
 
 #### DATA IN
+set.seed(398)
 rat <- read.csv("Data/1-PdLRattinessData.csv")
 rat <- na.omit(rat)
 ID <- create.ID.coords(rat,~X+Y)
@@ -60,7 +61,7 @@ llik <- function(par,which="none") {
     sigma <- exp(par[((n.inst+1):(n.inst+2))])
     beta <- par[(n.inst+3):(n.inst+2+p)]  
   } else {
-    sigma <- exp(par[((n.inst+1):(2*n.inst))]) s
+    sigma <- exp(par[((n.inst+1):(2*n.inst))])
     beta <- par[(2*n.inst+1):(2*n.inst+p)]    
   }
   
@@ -254,19 +255,16 @@ U.data <- data.frame(X=unique(rat[,c("X","Y")])[,1],
                      U=U.pred.mean)
 
 ratUj <- left_join(rat,U.data, by=c("X","Y"))
-ratUj <- ratUj[,c("valley","X","Y","elevation","U","dist_sewer","dist_trash",
-                  "lc10_prop_soil","lc10_prop_veg","lc10_prop_pave","lc_perv_10m",
-                  "lc30_prop_soil","lc30_prop_veg","lc30_prop_pave","lc_perv_30m","rel_elev","dist_pri_sewer")]
+ratUj <- ratUj[,c("X","Y","U")]
 ratUj <- unique(ratUj)
 
 #### Exploratory analysis - test for residual spatial correlation
 
-# Histogram of Uj
-hist(ratUj$U)
-
 # Spatial correlation in data
 U.data <- as.data.frame(U.data)
 ratUj <- as.data.frame(ratUj)
-vari.no.cov <- variogram(ratUj,~U,~X+Y,uvec=seq(0,200,length=15))
+vari.no.cov <- variogram(ratUj,~U,~X+Y,uvec=seq(0,100,length=10))
 env <- variog.mc.env(geodata=as.geodata(U.data),obj.variog=vari.no.cov,nsim=1000)
-plot(vari.no.cov,envelope=env, xlab="Distance (m)", ylab = "Semivariance")
+tiff("variogram.tiff", units="mm", width=180, height=159, res=300)
+plot(vari.no.cov,envelope=env, xlab="Distance (m)", ylab = "Semivariance", cex=1.7, cex.axis=1.5, cex.lab=1.5, pch=1)
+dev.off()

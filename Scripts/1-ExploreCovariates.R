@@ -23,6 +23,7 @@ library(numDeriv)
 rat <- read.csv("Data/1-PdLRattinessData.csv")
 rat <- na.omit(rat)
 ID <- create.ID.coords(rat,~X+Y)
+
 U.halton <- qnorm(halton(1000,1))
 
 # standardise covariate values
@@ -177,9 +178,79 @@ U.data <- data.frame(X=unique(rat[,c("X","Y")])[,1],
                      U=U.pred.mean)
 
 ratUj <- left_join(rat,U.data, by=c("X","Y"))
+ratUj <- ratUj[,c("X","Y","elevation","dist_trash","lc30_prop_veg","U")]
 ratUj <- unique(ratUj)
 
+write.csv(ratUj, "Data/Exploratory_plots/Uj_nocov.csv")
+ratUj <- read.csv("Data/Exploratory_plots/Uj_nocov.csv")
 #### Exploratory analysis
 
 # You can now plot Uj against covariates of interest (using ratUj) to explore relationships and decide how they 
-# should be included in the model.
+# should be included in the model. For example:
+
+# for plots
+par(mar=c(1,1,1,1))# Make margins smaller
+# choose resolution
+res <- 300
+# choose line width
+lwd <- 1.5
+
+# elevation
+x.elevation <- cut(ratUj$elevation,quantile(ratUj$elevation,seq(0,1,0.12)),
+                   include.lowest=TRUE)
+elevation.bin <- x.elevation
+x.elevation.mean <- tapply(ratUj$elevation,elevation.bin,mean)
+prop.elevation <- tapply(ratUj$U,elevation.bin,
+                         function(x) mean(x,na.rm=TRUE))
+n.obs.elevation <- tapply(elevation.bin,elevation.bin,length)
+
+model_elev <- lm(U~elevation,data=ratUj)
+x_elev <- 20:70
+y_elev <- coef(model_elev)[1] + x_elev*coef(model_elev)[2]
+
+tiff("elevation.tiff", units="mm", width=180, height=165, res=300)
+plot(x.elevation.mean,prop.elevation, main="",xlab="Mean elevation (m)",
+     ylab="Estimated Ui", xlim=c(25,55), ylim=c(-0.3,0.2), cex=4, cex.axis=1.5, cex.lab=1.5, pch=1)
+lines(x_elev,y_elev, col="red")
+dev.off()
+
+# distance to trash
+x.trash <- cut(ratUj$dist_trash,quantile(ratUj$dist_trash,seq(0,1,0.1)),
+               include.lowest=TRUE)
+trash.bin <- x.trash
+x.trash.mean <- tapply(ratUj$dist_trash,trash.bin,mean)
+prop.trash <- tapply(ratUj$U,trash.bin,
+                     function(x) mean(x,na.rm=TRUE))
+n.obs.trash <- tapply(trash.bin,trash.bin,length)
+
+sp.trash <- function(x) max(0,x-90)
+sp.trash <- Vectorize(sp.trash)
+model_trash <- lm(U~dist_trash + sp.trash(dist_trash),data=ratUj)
+x_trash <- 0:210
+y_trash <- coef(model_trash)[1] + x_trash*coef(model_trash)[2] + sp.trash(x_trash)*coef(model_trash)[3]
+
+tiff("trash.tiff", units="mm", width=180, height=165, res=300)
+plot(x.trash.mean,prop.trash,cex=4, main="",xlab="Mean distance (m)",
+     ylab="Estimated Ui",xlim=c(0,200), ylim=c(-0.3, 0.35), cex.axis=1.5, cex.lab=1.5, pch=1)
+lines(x_trash,y_trash, col="red")
+dev.off()
+
+# land cover - proportion vegetation within 30m radius
+x.lc30 <- cut(ratUj$lc30_prop_veg,quantile(ratUj$lc30_prop_veg,seq(0,1,0.1)),
+              include.lowest=TRUE)
+lc30.bin <- x.lc30
+x.lc30.mean <- tapply(ratUj$lc30_prop_veg,lc30.bin,mean)
+prop.lc30 <- tapply(ratUj$U,lc30.bin,
+                    function(x) mean(x,na.rm=TRUE))
+n.obs.lc30 <- tapply(lc30.bin,lc30.bin,length)
+
+model_lc <- lm(U~lc30_prop_veg,data=ratUj)
+x_lc <- seq(0, 0.9, 0.1)
+y_lc <- coef(model_lc)[1] + x_lc*coef(model_lc)[2]
+
+tiff("veg.tiff", units="mm", width=180, height=165, res=300)
+plot(x.lc30.mean,prop.lc30,cex=4, main="",xlab="Proportion vegetation",
+     ylab="Estimated Ui",xlim=c(0,0.8), ylim=c(-0.25, 0.35),  cex.axis=1.5, cex.lab=1.5, pch=1)
+lines(x_lc,y_lc, col="red")
+dev.off()
+

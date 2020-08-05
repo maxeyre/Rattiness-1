@@ -14,6 +14,7 @@
 rm(list=ls())
 library(dplyr)
 library(PrevMap)
+set.seed(590)
 
 #### DATA IN
 rat <- read.csv("Data/1-PdLRattinessData.csv")
@@ -307,5 +308,10 @@ par0 <- estim.par$par
 
 }
 # your parameter estimates are now in estim.par
+
+# We recommend repeated re-fitting model with new parameter estimate plug-in until 
+# euclid norm of relative difference between two consecutive parameter estimates falls below 
+# a chosen value. Parameter estimates reported in the published article were estimated 
+# following this method.
 
 saveRDS(estim.par,"estim.par.RDS")

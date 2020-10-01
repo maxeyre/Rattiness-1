@@ -1,7 +1,7 @@
 # A multivariate geostatistical framework for combining multiple indices of abundance for disease vectors and reservoirs: A case study of *rattiness* in a low-income urban Brazilian community
 
 ## Article
-The manuscript has been accepted for publication in the Journal of the Royal Society Interface. A link to a pre-print can be viewed [here](https://www.medrxiv.org/content/10.1101/2020.07.31.20165753v1) and the final published version will be made available here soon.
+The manuscript has been published in the Journal of the Royal Society Interface, link [here](https://royalsocietypublishing.org/doi/10.1098/rsif.2020.0398).
 
 ## Data
 #### 1. Rat index data

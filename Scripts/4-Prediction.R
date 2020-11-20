@@ -59,8 +59,6 @@ phi0 <- exp(estim.par$par[p+7])
 psi0 <- exp(estim.par$par[p+8])/(1+exp(estim.par$par[p+8]))
 
 Sigma0 <- as.matrix(psi0*exp(-U/phi0))
-Sigma0 <- as.matrix(Sigma0)
-diag(Sigma0) <- 1
 Sigma0.inv <- solve(Sigma0)
 
 mu0 <- as.numeric(D%*%beta0)
